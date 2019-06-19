@@ -17,3 +17,6 @@ Desktop.ini
 /Library
 /Logs
 /Temp
+
+# Large files
+*.mov

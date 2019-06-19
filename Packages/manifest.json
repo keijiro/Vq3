@@ -1,36 +1,52 @@
 {
   "dependencies": {
     "com.unity.package-manager-ui": "2.1.2",
+    "com.unity.render-pipelines.high-definition": "5.16.1-preview",
     "com.unity.timeline": "1.0.0",
-    "com.unity.modules.ai": "1.0.0",
+    "com.unity.visualeffectgraph": "https://github.com/keijiro/com.unity.visualeffectgraph-5.16.1-fix.git",
+    "jp.keijiro.dkvfx": "https://github.com/keijiro/Dkvfx.git#upm",
+    "jp.keijiro.ffmpeg-out": "https://github.com/keijiro/jp.keijiro.ffmpeg-out.git",
+    "jp.keijiro.klak.hap": "https://github.com/keijiro/KlakHap.git#upm",
+    "jp.keijiro.klak.ndi": "https://github.com/keijiro/KlakNDI.git#upm-linux",
+    "jp.keijiro.vfxextra": "https://github.com/keijiro/VfxExtra.git#upm",
     "com.unity.modules.animation": "1.0.0",
-    "com.unity.modules.assetbundle": "1.0.0",
     "com.unity.modules.audio": "1.0.0",
-    "com.unity.modules.cloth": "1.0.0",
     "com.unity.modules.director": "1.0.0",
     "com.unity.modules.imageconversion": "1.0.0",
     "com.unity.modules.imgui": "1.0.0",
     "com.unity.modules.jsonserialize": "1.0.0",
     "com.unity.modules.particlesystem": "1.0.0",
     "com.unity.modules.physics": "1.0.0",
-    "com.unity.modules.physics2d": "1.0.0",
-    "com.unity.modules.screencapture": "1.0.0",
-    "com.unity.modules.terrain": "1.0.0",
-    "com.unity.modules.terrainphysics": "1.0.0",
-    "com.unity.modules.tilemap": "1.0.0",
     "com.unity.modules.ui": "1.0.0",
-    "com.unity.modules.uielements": "1.0.0",
-    "com.unity.modules.umbra": "1.0.0",
-    "com.unity.modules.unityanalytics": "1.0.0",
     "com.unity.modules.unitywebrequest": "1.0.0",
-    "com.unity.modules.unitywebrequestassetbundle": "1.0.0",
-    "com.unity.modules.unitywebrequestaudio": "1.0.0",
-    "com.unity.modules.unitywebrequesttexture": "1.0.0",
-    "com.unity.modules.unitywebrequestwww": "1.0.0",
-    "com.unity.modules.vehicles": "1.0.0",
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
-    "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
+  },
+  "lock": {
+    "com.unity.visualeffectgraph": {
+      "hash": "a45e2e5fc61c2c3a50d380e3818a78bda5d53f6d",
+      "revision": "HEAD"
+    },
+    "jp.keijiro.dkvfx": {
+      "hash": "456aaf96ade6924602952fbd9a9945df8a332d03",
+      "revision": "upm"
+    },
+    "jp.keijiro.ffmpeg-out": {
+      "hash": "9c735fc1e81e4ac9a81dcf6d870471d80a1cc963",
+      "revision": "HEAD"
+    },
+    "jp.keijiro.klak.hap": {
+      "hash": "64740a2c6356dbbd03201caefbb0fc42233dbfa3",
+      "revision": "upm"
+    },
+    "jp.keijiro.klak.ndi": {
+      "hash": "4f1dd2274c9f5b73fa50b5e31a42eade1b271845",
+      "revision": "upm-linux"
+    },
+    "jp.keijiro.vfxextra": {
+      "hash": "56f7f41a2742decd442f50ed7d26c1b59d265274",
+      "revision": "upm"
+    }
   }
 }
