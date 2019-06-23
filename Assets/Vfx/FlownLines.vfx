@@ -286,9 +286,9 @@ MonoBehaviour:
     position:
       serializedVersion: 2
       x: -74
-      y: 865
-      width: 408
-      height: 200
+      y: 876
+      width: 406
+      height: 199
     contents:
     - model: {fileID: 8926484042661615240}
       id: 0
@@ -304,7 +304,7 @@ MonoBehaviour:
     x: -2214
     y: -414
     width: 3308
-    height: 3398
+    height: 3397
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -916,12 +916,11 @@ VisualEffectResource:
       tmp_bg = tmp_bf[3];\n            float tmp_bh = tmp_bf[2];\n            float
       tmp_bi = tmp_bg + tmp_bh;\n            float tmp_bj = tmp_bf[1];\n            float
       tmp_bk = tmp_bi + tmp_bj;\n            float tmp_bl = tmp_bf[0];\n            float
-      tmp_bm = tmp_bk + tmp_bl;\n            float tmp_bn = max(tmp_bm, (float)0);\n
-      \           float tmp_bp = min(tmp_bn, (float)1);\n            float4 tmp_bq
-      = SampleGradient(uniform_b,tmp_bp);\n            float tmp_br = tmp_bq[0];\n
-      \           float tmp_bs = tmp_bq[1];\n            float tmp_bt = tmp_bq[2];\n
-      \           float3 tmp_bu = float3(tmp_br, tmp_bs, tmp_bt);\n            SetAttribute_FDD06EC7(
-      /*inout */color, tmp_bu);\n        }\n        {\n            uint tmp_p = particleId
+      tmp_bm = tmp_bk + tmp_bl;\n            float tmp_bn = saturate(tmp_bm);\n            float4
+      tmp_bo = SampleGradient(uniform_b,tmp_bn);\n            float tmp_bp = tmp_bo[0];\n
+      \           float tmp_bq = tmp_bo[1];\n            float tmp_br = tmp_bo[2];\n
+      \           float3 tmp_bs = float3(tmp_bp, tmp_bq, tmp_br);\n            SetAttribute_FDD06EC7(
+      /*inout */color, tmp_bs);\n        }\n        {\n            uint tmp_p = particleId
       / (uint)1000;\n            uint tmp_q = tmp_p * (uint)1000;\n            uint
       tmp_r = particleId - tmp_q;\n            float tmp_s = (float)tmp_r;\n            float
       tmp_u = tmp_s + (float)1;\n            float tmp_w = tmp_u / (float)1000;\n
@@ -949,18 +948,18 @@ VisualEffectResource:
       = tmp_bo[1];\n            float tmp_bt = tmp_br + tmp_bs;\n            float
       tmp_bu = tmp_bo[0];\n            float tmp_bv = tmp_bt + tmp_bu;\n            float
       tmp_bx = pow(tmp_bv, (float)0.5);\n            float tmp_bz = tmp_bx / (float)0.01;\n
-      \           float tmp_ca = max(tmp_bz, (float)0);\n            float tmp_cb
-      = min(tmp_ca, (float)1);\n            float tmp_cc = (float)2 * tmp_cb;\n            float
-      tmp_cd = (float)3 - tmp_cc;\n            float tmp_ce = tmp_cd * tmp_cb;\n            float
-      tmp_cf = tmp_ce * tmp_cb;\n            float tmp_cg = (float)1 - tmp_cf;\n            float4
-      tmp_ch = SampleTexture(VFX_SAMPLER(texture_c),tmp_be,(float)0);\n            float
-      tmp_ci = tmp_ch[3];\n            float tmp_cj = tmp_cg * tmp_ci;\n            SetAttribute_CEEAF35C(
-      /*inout */alpha, tmp_cj);\n        }\n        {\n            uint tmp_p = particleId
-      / (uint)1000;\n            uint tmp_r = tmp_p * (uint)2;\n            uint tmp_t
-      = tmp_r + (uint)1;\n            float tmp_u = FixedRand(tmp_t);\n            float
-      tmp_w = tmp_u * (float)2;\n            float tmp_x = (float)1 + tmp_w;\n            SetAttribute_F0142CB9(
-      /*inout */lifetime, tmp_x);\n        }\n        {\n            SetAttribute_E629755(
-      /*inout */velocity, float3(0,0,0));\n        }\n        {\n            SetCustomAttribute_32AED69E(
+      \           float tmp_ca = saturate(tmp_bz);\n            float tmp_cb = (float)2
+      * tmp_ca;\n            float tmp_cc = (float)3 - tmp_cb;\n            float
+      tmp_cd = tmp_cc * tmp_ca;\n            float tmp_ce = tmp_cd * tmp_ca;\n            float
+      tmp_cf = (float)1 - tmp_ce;\n            float4 tmp_cg = SampleTexture(VFX_SAMPLER(texture_c),tmp_be,(float)0);\n
+      \           float tmp_ch = tmp_cg[3];\n            float tmp_ci = tmp_cf * tmp_ch;\n
+      \           SetAttribute_CEEAF35C( /*inout */alpha, tmp_ci);\n        }\n        {\n
+      \           uint tmp_p = particleId / (uint)1000;\n            uint tmp_r =
+      tmp_p * (uint)2;\n            uint tmp_t = tmp_r + (uint)1;\n            float
+      tmp_u = FixedRand(tmp_t);\n            float tmp_w = tmp_u * (float)3;\n            float
+      tmp_x = (float)1 + tmp_w;\n            SetAttribute_F0142CB9( /*inout */lifetime,
+      tmp_x);\n        }\n        {\n            SetAttribute_E629755( /*inout */velocity,
+      float3(0,0,0));\n        }\n        {\n            SetCustomAttribute_32AED69E(
       /*inout */TargetVelocity, float3(0,0,0));\n        }\n        \n\n\n#if VFX_USE_ALIVE_CURRENT\n
       \       if (alive)\n        {\n\t\t\tuint deadIndex = deadListIn.DecrementCounter();\n
       \           uint index = deadListIn[deadIndex];\n            attributeBuffer.Store3((index
@@ -1256,13 +1255,13 @@ VisualEffectResource:
         data[0]: -1
         data[1]: -1
         data[2]: -1
-        data[3]: 1
+        data[3]: 3
       - op: 1
-        valueIndex: 19
+        valueIndex: 21
         data[0]: -1
         data[1]: -1
         data[2]: -1
-        data[3]: 3
+        data[3]: 1
       - op: 1
         valueIndex: 22
         data[0]: -1
@@ -1415,7 +1414,7 @@ VisualEffectResource:
           m_Value: 0
         - m_ExpressionIndex: 9
           m_Value: 0.5
-        - m_ExpressionIndex: 11
+        - m_ExpressionIndex: 12
           m_Value: 0.01
         - m_ExpressionIndex: 13
           m_Value: 2
@@ -1435,7 +1434,7 @@ VisualEffectResource:
           m_Value: {x: 1000000, y: 1000000}
       m_Vector3f:
         m_Array:
-        - m_ExpressionIndex: 12
+        - m_ExpressionIndex: 11
           m_Value: {x: 0, y: 0, z: 0}
         - m_ExpressionIndex: 15
           m_Value: {x: 9, y: 0, z: 0}
@@ -1585,7 +1584,7 @@ VisualEffectResource:
     - nameId: Ripple Origin_angles
       index: 30
     - nameId: Ripple Origin_position
-      index: 12
+      index: 11
     - nameId: Ripple Origin_scale
       index: 29
     - nameId: Ripple Time
@@ -1863,7 +1862,7 @@ VisualEffectResource:
       - nameId: uniform_c
         index: 28
       - nameId: uniform_d
-        index: 12
+        index: 11
       - nameId: uniform_e
         index: 25
       params:
@@ -13815,7 +13814,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 118, y: 927}
+  m_UIPosition: {x: 118, y: 938}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -13888,7 +13887,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 3
+      m_SerializableObject: 4
     m_Space: 2147483647
   m_Property:
     name: max

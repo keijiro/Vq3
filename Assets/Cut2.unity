@@ -244,7 +244,7 @@ VisualEffect:
       - m_Value: 1
         m_Name: Alpha
         m_Overridden: 1
-      - m_Value: 0.8021341
+      - m_Value: 2.0265827
         m_Name: Ripple Time
         m_Overridden: 1
     m_Vector2f:
@@ -784,7 +784,7 @@ VisualEffect:
       - m_Value: 0
         m_Name: Spawn Rate
         m_Overridden: 1
-      - m_Value: 2.2569137
+      - m_Value: 4.0265827
         m_Name: Effect Time
         m_Overridden: 1
     m_Vector2f:
@@ -995,7 +995,7 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 0.9990613
+      - m_Value: 0.66366774
         m_Name: Spawn Rate
         m_Overridden: 1
     m_Vector2f:
@@ -1426,7 +1426,7 @@ VisualEffect:
       - m_Value: 0.6852213
         m_Name: Effect Time
         m_Overridden: 1
-      - m_Value: 0.12616457
+      - m_Value: 0.8707417
         m_Name: Alpha
         m_Overridden: 1
     m_Vector2f:
