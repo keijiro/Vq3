@@ -619,7 +619,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614907}
   - {fileID: 8926484042661615057}
   - {fileID: 8926484042661615138}
-  m_UIPosition: {x: 705, y: 1781}
+  m_UIPosition: {x: 701, y: 1781}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -725,7 +725,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614700}
   - {fileID: 8926484042661615143}
   - {fileID: 8926484042661615032}
-  m_UIPosition: {x: 704, y: 174}
+  m_UIPosition: {x: 708, y: 178}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -1489,6 +1489,15 @@ VisualEffectResource:
             - serializedVersion: 3
               time: -0.05
               value: 1
+              inSlope: 14.655131
+              outSlope: 14.655131
+              tangentMode: 136
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: -0.03
+              value: 3
               inSlope: 0
               outSlope: 0
               tangentMode: 136
@@ -1514,18 +1523,18 @@ VisualEffectResource:
             - serializedVersion: 3
               time: 0
               value: 1
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
+              inSlope: -1.2935289
+              outSlope: -1
+              tangentMode: 69
               weightedMode: 0
               inWeight: 0
               outWeight: 0
             - serializedVersion: 3
               time: 1
               value: 0
-              inSlope: -0.3787541
+              inSlope: -1
               outSlope: -0.3787541
-              tangentMode: 0
+              tangentMode: 69
               weightedMode: 0
               inWeight: 0
               outWeight: 0
@@ -14095,7 +14104,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.AnimationCurve, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"frames":[{"time":0.0,"value":1.0,"inTangent":0.0,"outTangent":0.0,"tangentMode":0,"leftTangentMode":0,"rightTangentMode":0,"broken":false},{"time":1.0,"value":0.0,"inTangent":-0.3787541091442108,"outTangent":-0.3787541091442108,"tangentMode":0,"leftTangentMode":0,"rightTangentMode":0,"broken":false}],"preWrapMode":8,"postWrapMode":8,"version":1}'
+      m_SerializableObject: '{"frames":[{"time":0.0,"value":1.0,"inTangent":-1.2935289144515992,"outTangent":-1.0,"tangentMode":0,"leftTangentMode":2,"rightTangentMode":2,"broken":true},{"time":1.0,"value":0.0,"inTangent":-1.0,"outTangent":-0.3787541091442108,"tangentMode":0,"leftTangentMode":2,"rightTangentMode":2,"broken":true}],"preWrapMode":8,"postWrapMode":8,"version":1}'
     m_Space: 2147483647
   m_Property:
     name: Alpha
@@ -14663,7 +14672,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.AnimationCurve, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"frames":[{"time":-0.21586155891418458,"value":0.2761746048927307,"inTangent":0.0,"outTangent":0.0,"tangentMode":0,"leftTangentMode":4,"rightTangentMode":4,"broken":false},{"time":-0.05000000074505806,"value":1.0,"inTangent":0.0,"outTangent":0.0,"tangentMode":0,"leftTangentMode":4,"rightTangentMode":4,"broken":false},{"time":0.0,"value":0.0,"inTangent":0.0,"outTangent":0.0,"tangentMode":0,"leftTangentMode":4,"rightTangentMode":4,"broken":false}],"preWrapMode":8,"postWrapMode":8,"version":1}'
+      m_SerializableObject: '{"frames":[{"time":-0.21586155891418458,"value":0.2761746048927307,"inTangent":0.0,"outTangent":0.0,"tangentMode":0,"leftTangentMode":4,"rightTangentMode":4,"broken":false},{"time":-0.05000000074505806,"value":1.0,"inTangent":14.655131340026856,"outTangent":14.655131340026856,"tangentMode":0,"leftTangentMode":4,"rightTangentMode":4,"broken":false},{"time":-0.029999999329447748,"value":3.0,"inTangent":0.0,"outTangent":0.0,"tangentMode":0,"leftTangentMode":4,"rightTangentMode":4,"broken":false},{"time":0.0,"value":0.0,"inTangent":0.0,"outTangent":0.0,"tangentMode":0,"leftTangentMode":4,"rightTangentMode":4,"broken":false}],"preWrapMode":8,"postWrapMode":8,"version":1}'
     m_Space: 2147483647
   m_Property:
     name: curve

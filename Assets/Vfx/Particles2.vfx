@@ -261,8 +261,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: -463
     y: -228
-    width: 1540
-    height: 2988
+    width: 1538
+    height: 2989
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -706,7 +706,8 @@ MonoBehaviour:
   - {fileID: 114131763552434164}
   - {fileID: 8926484042661614754}
   - {fileID: 8926484042661614979}
-  m_UIPosition: {x: 701, y: 47}
+  - {fileID: 8926484042661615129}
+  m_UIPosition: {x: 695, y: 77}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -878,7 +879,9 @@ VisualEffectResource:
       * RAND, 1.0f / 3.0f);\n    \n    float2 sincosTheta;\n    sincos(theta, sincosTheta.x,
       sincosTheta.y);\n    sincosTheta *= sqrt(1.0f - cosPhi * cosPhi);\n    \n    direction
       = float3(sincosTheta, cosPhi);\n    position += direction * (rNorm * ArcSphere_sphere_radius)
-      + ArcSphere_sphere_center;\n    \n}\n\n\n\n[numthreads(NB_THREADS_PER_GROUP,1,1)]\nvoid
+      + ArcSphere_sphere_center;\n    \n}\nvoid SetAttribute_E629755(inout float3
+      velocity, float3 Velocity) /*attribute:velocity Composition:Overwrite Source:Slot
+      Random:Off channels:XYZ */\n{\n    velocity = Velocity;\n}\n\n\n\n[numthreads(NB_THREADS_PER_GROUP,1,1)]\nvoid
       CSMain(uint3 groupId          : SV_GroupID,\n            uint3 groupThreadId
       \   : SV_GroupThreadID)\n{\n    uint id = groupThreadId.x + groupId.x * NB_THREADS_PER_GROUP;\n#if
       !VFX_USE_SPAWNER_FROM_GPU\n    id += groupId.y * dispatchWidth * NB_THREADS_PER_GROUP;\n#endif\n\n#if
@@ -911,23 +914,25 @@ VisualEffectResource:
       \           float tmp_bm = (float)0.2 + tmp_bl;\n            float tmp_bo =
       tmp_bm * (float)0.12;\n            PositionSphere_18D( /*inout */position,  /*inout
       */seed,  /*inout */direction, float3(0,0,0), tmp_bo, (float)6.283185, (float)0);\n
-      \       }\n        \n\n\n#if VFX_USE_ALIVE_CURRENT\n        if (alive)\n        {\n\t\t\tuint
-      deadIndex = deadListIn.DecrementCounter();\n            uint index = deadListIn[deadIndex];\n
-      \           attributeBuffer.Store((index * 0x1 + 0x0) << 2,asuint(lifetime));\n
-      \           attributeBuffer.Store3((index * 0x4 + 0xF4240) << 2,asuint(color));\n
-      \           attributeBuffer.Store3((index * 0x8 + 0x4C4B40) << 2,asuint(position));\n
-      \           attributeBuffer.Store3((index * 0x8 + 0x4C4B44) << 2,asuint(velocity));\n
-      \           attributeBuffer.Store((index * 0x8 + 0x4C4B43) << 2,asuint(age));\n
-      \           attributeBuffer.Store((index * 0x1 + 0xC65D40) << 2,asuint(particleId));\n
-      \           attributeBuffer.Store((index * 0x8 + 0x4C4B47) << 2,uint(alive));\n
-      \           \n\n        }\n#else\n        uint index = particleIndex;\n        attributeBuffer.Store((index
-      * 0x1 + 0x0) << 2,asuint(lifetime));\n        attributeBuffer.Store3((index
-      * 0x4 + 0xF4240) << 2,asuint(color));\n        attributeBuffer.Store3((index
-      * 0x8 + 0x4C4B40) << 2,asuint(position));\n        attributeBuffer.Store3((index
-      * 0x8 + 0x4C4B44) << 2,asuint(velocity));\n        attributeBuffer.Store((index
-      * 0x8 + 0x4C4B43) << 2,asuint(age));\n        attributeBuffer.Store((index *
-      0x1 + 0xC65D40) << 2,asuint(particleId));\n        attributeBuffer.Store((index
-      * 0x8 + 0x4C4B47) << 2,uint(alive));\n        \n\n#endif\n    }\n}\n"
+      \       }\n        {\n            SetAttribute_E629755( /*inout */velocity,
+      float3(0,0,0));\n        }\n        \n\n\n#if VFX_USE_ALIVE_CURRENT\n        if
+      (alive)\n        {\n\t\t\tuint deadIndex = deadListIn.DecrementCounter();\n
+      \           uint index = deadListIn[deadIndex];\n            attributeBuffer.Store((index
+      * 0x1 + 0x0) << 2,asuint(lifetime));\n            attributeBuffer.Store3((index
+      * 0x4 + 0xF4240) << 2,asuint(color));\n            attributeBuffer.Store3((index
+      * 0x8 + 0x4C4B40) << 2,asuint(position));\n            attributeBuffer.Store3((index
+      * 0x8 + 0x4C4B44) << 2,asuint(velocity));\n            attributeBuffer.Store((index
+      * 0x8 + 0x4C4B43) << 2,asuint(age));\n            attributeBuffer.Store((index
+      * 0x1 + 0xC65D40) << 2,asuint(particleId));\n            attributeBuffer.Store((index
+      * 0x8 + 0x4C4B47) << 2,uint(alive));\n            \n\n        }\n#else\n        uint
+      index = particleIndex;\n        attributeBuffer.Store((index * 0x1 + 0x0) <<
+      2,asuint(lifetime));\n        attributeBuffer.Store3((index * 0x4 + 0xF4240)
+      << 2,asuint(color));\n        attributeBuffer.Store3((index * 0x8 + 0x4C4B40)
+      << 2,asuint(position));\n        attributeBuffer.Store3((index * 0x8 + 0x4C4B44)
+      << 2,asuint(velocity));\n        attributeBuffer.Store((index * 0x8 + 0x4C4B43)
+      << 2,asuint(age));\n        attributeBuffer.Store((index * 0x1 + 0xC65D40) <<
+      2,asuint(particleId));\n        attributeBuffer.Store((index * 0x8 + 0x4C4B47)
+      << 2,uint(alive));\n        \n\n#endif\n    }\n}\n"
   - compute: 1
     name: '[System 1]Update'
     source: "#pragma kernel CSMain\n#define NB_THREADS_PER_GROUP 64\n#define VFX_USE_LIFETIME_CURRENT
@@ -994,8 +999,8 @@ VisualEffectResource:
       /*inout */position,  /*inout */velocity,  /*inout */age, lifetime, float3(0,0,0),
       tmp_bs, (float)1.3, (float)0, (float)0, deltaTime_a, (float)1, (float)0);\n\t\t\t}\n\t\t\t{\n\t\t\t
       \   uint tmp_bf = particleId ^ asuint(uniform_d);\n\t\t\t    float tmp_bg =
-      FixedRand(tmp_bf);\n\t\t\t    float tmp_bi = tmp_bg * (float)0.09999999;\n\t\t\t
-      \   float tmp_bj = (float)0.3 + tmp_bi;\n\t\t\t    float3 tmp_bl = float3(tmp_bj,
+      FixedRand(tmp_bf);\n\t\t\t    float tmp_bi = tmp_bg * (float)0.05000001;\n\t\t\t
+      \   float tmp_bj = (float)0.26 + tmp_bi;\n\t\t\t    float3 tmp_bl = float3(tmp_bj,
       (float)0, (float)0);\n\t\t\t    Force_0( /*inout */velocity, mass, tmp_bl, deltaTime_a);\n\t\t\t}\n\t\t\t{\n\t\t\t
       \   Turbulence_1(position,  /*inout */velocity, mass, InvFieldTransform_c, FieldTransform_c,
       (float)0.5, (float)0.1, (float)1, (uint)3, deltaTime_a);\n\t\t\t}\n\t\t\t{\n\t\t\t
@@ -1025,8 +1030,8 @@ VisualEffectResource:
       \   CollisionSphere_0( /*inout */position,  /*inout */velocity,  /*inout */age,
       lifetime, float3(0,0,0), tmp_bs, (float)1.3, (float)0, (float)0, deltaTime_a,
       (float)1, (float)0);\n\t\t}\n\t\t{\n\t\t    uint tmp_bf = particleId ^ asuint(uniform_d);\n\t\t
-      \   float tmp_bg = FixedRand(tmp_bf);\n\t\t    float tmp_bi = tmp_bg * (float)0.09999999;\n\t\t
-      \   float tmp_bj = (float)0.3 + tmp_bi;\n\t\t    float3 tmp_bl = float3(tmp_bj,
+      \   float tmp_bg = FixedRand(tmp_bf);\n\t\t    float tmp_bi = tmp_bg * (float)0.05000001;\n\t\t
+      \   float tmp_bj = (float)0.26 + tmp_bi;\n\t\t    float3 tmp_bl = float3(tmp_bj,
       (float)0, (float)0);\n\t\t    Force_0( /*inout */velocity, mass, tmp_bl, deltaTime_a);\n\t\t}\n\t\t{\n\t\t
       \   Turbulence_1(position,  /*inout */velocity, mass, InvFieldTransform_c, FieldTransform_c,
       (float)0.5, (float)0.1, (float)1, (uint)3, deltaTime_a);\n\t\t}\n\t\t{\n\t\t
@@ -1540,9 +1545,9 @@ VisualEffectResource:
         - m_ExpressionIndex: 19
           m_Value: 4.2
         - m_ExpressionIndex: 21
-          m_Value: 0.099999994
+          m_Value: 0.050000012
         - m_ExpressionIndex: 22
-          m_Value: 0.3
+          m_Value: 0.26
         - m_ExpressionIndex: 24
           m_Value: 0.2
         - m_ExpressionIndex: 26
@@ -6972,7 +6977,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 296, y: 1171}
+  m_UIPosition: {x: 286, y: 1172}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -7007,7 +7012,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.3
+      m_SerializableObject: 0.26
     m_Space: 2147483647
   m_Property:
     name: min
@@ -7047,7 +7052,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.4
+      m_SerializableObject: 0.31
     m_Space: 2147483647
   m_Property:
     name: max
@@ -7329,3 +7334,165 @@ MonoBehaviour:
   - {fileID: 8926484042661615065}
   - {fileID: 8926484042661615009}
   - {fileID: 8926484042661615055}
+--- !u!114 &8926484042661615129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a971fa2e110a0ac42ac1d8dae408704b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Parent: {fileID: 114946465509916290}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 0
+  m_UISuperCollapsed: 0
+  m_InputSlots:
+  - {fileID: 8926484042661615130}
+  m_OutputSlots: []
+  m_Disabled: 0
+  attribute: velocity
+  Composition: 0
+  Source: 0
+  Random: 0
+  channels: 6
+--- !u!114 &8926484042661615130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac39bd03fca81b849929b9c966f1836a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Parent: {fileID: 0}
+  m_Children:
+  - {fileID: 8926484042661615131}
+  - {fileID: 8926484042661615132}
+  - {fileID: 8926484042661615133}
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
+  m_MasterSlot: {fileID: 8926484042661615130}
+  m_MasterData:
+    m_Owner: {fileID: 8926484042661615129}
+    m_Value:
+      m_Type:
+        m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      m_SerializableObject: '{"x":0.0,"y":0.0,"z":0.0}'
+    m_Space: 2147483647
+  m_Property:
+    name: Velocity
+    m_serializedType:
+      m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    attributes: []
+  m_Direction: 0
+  m_LinkedSlots: []
+--- !u!114 &8926484042661615131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f780aa281814f9842a7c076d436932e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Parent: {fileID: 8926484042661615130}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
+  m_MasterSlot: {fileID: 8926484042661615130}
+  m_MasterData:
+    m_Owner: {fileID: 0}
+    m_Value:
+      m_Type:
+        m_SerializableType: 
+      m_SerializableObject: 
+    m_Space: 2147483647
+  m_Property:
+    name: x
+    m_serializedType:
+      m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+    attributes: []
+  m_Direction: 0
+  m_LinkedSlots: []
+--- !u!114 &8926484042661615132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f780aa281814f9842a7c076d436932e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Parent: {fileID: 8926484042661615130}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
+  m_MasterSlot: {fileID: 8926484042661615130}
+  m_MasterData:
+    m_Owner: {fileID: 0}
+    m_Value:
+      m_Type:
+        m_SerializableType: 
+      m_SerializableObject: 
+    m_Space: 2147483647
+  m_Property:
+    name: y
+    m_serializedType:
+      m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+    attributes: []
+  m_Direction: 0
+  m_LinkedSlots: []
+--- !u!114 &8926484042661615133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f780aa281814f9842a7c076d436932e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Parent: {fileID: 8926484042661615130}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
+  m_MasterSlot: {fileID: 8926484042661615130}
+  m_MasterData:
+    m_Owner: {fileID: 0}
+    m_Value:
+      m_Type:
+        m_SerializableType: 
+      m_SerializableObject: 
+    m_Space: 2147483647
+  m_Property:
+    name: z
+    m_serializedType:
+      m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+    attributes: []
+  m_Direction: 0
+  m_LinkedSlots: []
