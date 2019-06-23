@@ -211,6 +211,8 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: -8176511714756623812, guid: 0dc8d8fda49e47b04a83cc8fb7b3f2cf, type: 2}
     value: {fileID: 0}
+  - key: {fileID: -3944482893267692729, guid: 71b0bc14d5d562c11879f6bfada25c9a, type: 2}
+    value: {fileID: 1123555076}
   m_ExposedReferences:
     m_References:
     - ac02e7aa971c6b433a0e7ab08f699646: {fileID: 0}
@@ -569,6 +571,7 @@ GameObject:
   - component: {fileID: 1123555075}
   - component: {fileID: 1123555074}
   - component: {fileID: 1123555073}
+  - component: {fileID: 1123555076}
   m_Layer: 0
   m_Name: Particles
   m_TagString: Untagged
@@ -626,7 +629,13 @@ VisualEffect:
   m_ResetSeedOnPlay: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 4.8769107
+        m_Name: Effect Time
+        m_Overridden: 1
+      - m_Value: 1
+        m_Name: Spawn Rate
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
@@ -661,6 +670,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1123555076
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123555072}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1223124662
 GameObject:
   m_ObjectHideFlags: 0
