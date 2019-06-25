@@ -244,7 +244,7 @@ VisualEffect:
       - m_Value: 1
         m_Name: Alpha
         m_Overridden: 1
-      - m_Value: 4
+      - m_Value: 0
         m_Name: Ripple Time
         m_Overridden: 1
     m_Vector2f:
@@ -782,10 +782,10 @@ VisualEffect:
       - m_Value: 0.03333334
         m_Name: Collision_radius
         m_Overridden: 0
-      - m_Value: 0
+      - m_Value: 1
         m_Name: Spawn Rate
         m_Overridden: 1
-      - m_Value: 6.0618715
+      - m_Value: 0
         m_Name: Effect Time
         m_Overridden: 1
     m_Vector2f:
@@ -996,7 +996,7 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 0.009010375
+      - m_Value: 0
         m_Name: Spawn Rate
         m_Overridden: 1
     m_Vector2f:
